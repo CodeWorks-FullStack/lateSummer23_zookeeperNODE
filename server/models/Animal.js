@@ -13,11 +13,15 @@ export const AnimalSchema = new Schema({
     { toJSON: { virtuals: true } }
 )
 
+
+
 AnimalSchema.virtual('exhibit', {
-    localField: 'exhibitId',
-    ref: 'Exhibit',
-    foreignField: '_id',
-    justOne: true
+    localField: 'exhibitId', // property to reference HERE on local shchema
+    ref: 'Exhibit', // the separate colllection we are referencing to grab the document for our populate
+    foreignField: '_id', // property to reference on the separate or 'foreign' schema
+    justOne: true // return the one document where the above fields match on the ref collection 
 })
 
-// TODO sam come back and write the story
+// ANCHOR Sam's virutal story:
+// "Hey mongoose, look at my localfield here on my AnimalSchema called exhibitId, and while you're looking at my local exhibitId, can you also go and look at the Exhibits collection in the database. While you're looking at the collection of Exhibits, can you compare the foreignfield _id on the Exhibit schema to my exhibitId from the AnimalSchema, and where those two match, return me with THAT one exhibit."
+
